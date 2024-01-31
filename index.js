@@ -37,6 +37,13 @@ bot.setWebHook(webhookUrl);
 //     console.log("Received text message:", msg);
 //   });
 // });
+app.post("/telegram-webhook", (req, res) => {
+  const { body } = req;
+  bot.processUpdate(body);
+
+  res.json({ message: body });
+});
+
 app.get("/telegram-webhook", (req, res) => {
   res.json({ message: "dljfljsd skdjfksdfkjsdkf" });
 });
