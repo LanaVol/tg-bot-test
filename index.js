@@ -17,13 +17,10 @@ bot.setWebHook(webhookUrl);
 
 app.post("/telegram-webhook", (req, res) => {
   const { body } = req;
+  console.log("*Received update:", body);
   bot.processUpdate(body);
-  res.sendStatus(200);
+  res.sendStatus(200).json({ message: body });
   console.log("Success");
-});
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
 });
 
 bot.on("text", async (msg) => {
@@ -39,6 +36,10 @@ bot.on("text", async (msg) => {
       `Your name is ${msg.from.first_name} ${msg.from.last_name}`
     );
   }
+  console.log("Received text message:", msg);
 });
 
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 // bot.startPolling();
