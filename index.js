@@ -21,22 +21,21 @@ app.post("/telegram-webhook", (req, res) => {
   bot.processUpdate(body);
   res.sendStatus(200).json({ message: body });
   console.log("Success");
-});
+  bot.on("text", async (msg) => {
+    const text = msg.text;
+    const chatId = msg.chat.id;
 
-bot.on("text", async (msg) => {
-  const text = msg.text;
-  const chatId = msg.chat.id;
-
-  if (text === "/start") {
-    bot.sendMessage(chatId, "Hello! This is Bot-tester");
-  }
-  if (text === "/info") {
-    bot.sendMessage(
-      chatId,
-      `Your name is ${msg.from.first_name} ${msg.from.last_name}`
-    );
-  }
-  console.log("Received text message:", msg);
+    if (text === "/start") {
+      bot.sendMessage(chatId, "Hello! This is Bot-tester");
+    }
+    if (text === "/info") {
+      bot.sendMessage(
+        chatId,
+        `Your name is ${msg.from.first_name} ${msg.from.last_name}`
+      );
+    }
+    console.log("Received text message:", msg);
+  });
 });
 
 app.listen(port, () => {
