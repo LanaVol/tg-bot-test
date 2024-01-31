@@ -1,9 +1,28 @@
 const TelegramBotAPI = require("node-telegram-bot-api");
 require("dotenv").config();
 const express = require("express");
+const bodyParser = require("body-parser");
 
 const token = process.env.API_TOKEN_BOT;
 const bot = new TelegramBotAPI(token);
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.use(bodyParser.json());
+
+const webhookUrl = "https://tg-bot-test-neon.vercel.app/";
+
+bot.setWebHook(webhookUrl);
+app.post("/telegram-webhook", (req, res) => {
+  const { body } = req;
+  bot.processUpdate(body);
+  res.sendStatus(200);
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 
 bot.on("text", async (msg) => {
   const text = msg.text;
@@ -20,4 +39,4 @@ bot.on("text", async (msg) => {
   }
 });
 
-bot.startPolling();
+// bot.startPolling();
