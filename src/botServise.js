@@ -34,7 +34,7 @@ commands();
 export const setupWebhook = async () => {
   try {
     const { data } = await axios.get(
-      `${TELEGRAM_API}/setWebhook?url=${webhookUrl}`
+      `${TELEGRAM_API}/setWebhook?url=${webhookUrl}&drop_pending_updates=true`
     );
     console.log(data);
   } catch (error) {
