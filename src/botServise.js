@@ -120,30 +120,30 @@ export const handleTelegramUpdate = async (update) => {
 //   });
 // };
 
-// const showBoardCardAction = (action) => {
-//   return `🔷Board: ${action.data.board.name}
-//     🔹Card: ${action.data.card.name}
-//     🔹Action: ${action.type}`;
-// };
+const showBoardCardAction = (action) => {
+  return `🔷Board: ${action.data.board.name}
+    🔹Card: ${action.data.card.name}
+    🔹Action: ${action.type}`;
+};
 
-// export const botMessageUpdateCard = async (action) => {
-//   await bot.sendMessage(
-//     groupChatBotId,
-//     `${showBoardCardAction(action)}
-//     🔹From: ${action.data.listBefore?.name || action.data.list?.name} list
-//     🔹To: ${action.data.listAfter?.name || action.data.list?.name} list
-//     🔹By user: ${action.memberCreator.fullName}`
-//   );
-// };
+export const botMessageUpdateCard = async (action) => {
+  await bot.sendMessage(
+    groupChatBotId,
+    `${showBoardCardAction(action)}
+    🔹From: ${action.data.listBefore?.name || action.data.list?.name} list
+    🔹To: ${action.data.listAfter?.name || action.data.list?.name} list
+    🔹By user: ${action.memberCreator.fullName}`
+  );
+};
 
-// export const botMessageCreatedCard = async (action) => {
-//   await bot.sendMessage(
-//     groupChatBotId,
-//     `${showBoardCardAction(action)}
-//     🔹List: ${action.data.list.name}
-//     🔹By user: ${action.memberCreator.fullName}`
-//   );
-// };
+export const botMessageCreatedCard = async (action) => {
+  await bot.sendMessage(
+    groupChatBotId,
+    `${showBoardCardAction(action)}
+    🔹List: ${action.data.list.name}
+    🔹By user: ${action.memberCreator.fullName}`
+  );
+};
 
 // startBot();
 // createNewBoardListFromBot();
