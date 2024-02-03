@@ -8,8 +8,8 @@ dotenv.config();
 const token = process.env.API_TOKEN_BOT;
 export const bot = new TelegramBotAPI(token);
 
-const webhookUrl = "https://6eeb-176-37-48-101.ngrok-free.app/telegram-webhook";
-// const webhookUrl = "https://tg-bot-test-neon.vercel.app/telegram-webhook";
+// const webhookUrl = "https://6eeb-176-37-48-101.ngrok-free.app/telegram-webhook";
+const webhookUrl = "https://tg-bot-test-neon.vercel.app/telegram-webhook";
 export let groupChatBotId = "-1002118628204";
 
 const commards = () => {

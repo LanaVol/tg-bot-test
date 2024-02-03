@@ -3,17 +3,19 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export const trelloAPIKey = process.env.TRELLO_API_KEY;
-export const trelloAccessToken = process.env.TRELLO_ACCESS_TOKEN;
-export const trelloBoardId = process.env.TRELLO_ID_BOARD;
+const trelloAPIKey = process.env.TRELLO_API_KEY;
+const trelloAccessToken = process.env.TRELLO_ACCESS_TOKEN;
+const trelloBoardId = process.env.TRELLO_ID_BOARD;
 
-const newTrelloWebhookUrl =
-  "https://6eeb-176-37-48-101.ngrok-free.app/trello-webhook";
+// const newTrelloWebhookUrl =
+//   "https://6eeb-176-37-48-101.ngrok-free.app/trello-webhook";
+
+const vercelWebhookURL = "https://tg-bot-test-neon.vercel.app/trello-webhook";
 
 export const createWebhook = async () => {
   try {
     const response = await axios.post(
-      `https://api.trello.com/1/webhooks/?callbackURL=${newTrelloWebhookUrl}&idModel=${trelloBoardId}&key=${trelloAPIKey}&token=${trelloAccessToken}`,
+      `https://api.trello.com/1/webhooks/?callbackURL=${vercelWebhookURL}&idModel=${trelloBoardId}&key=${trelloAPIKey}&token=${trelloAccessToken}`,
       {
         method: "POST",
         headers: {
@@ -71,7 +73,7 @@ const getAllWebhooksTrello = async () => {
 const deleteWebhooksTrello = async () => {
   try {
     const response = await axios.delete(
-      `https://api.trello.com/1/webhooks/65bce141e3b48905eb9758a6?key=${trelloAPIKey}&token=${trelloAccessToken}`,
+      `https://api.trello.com/1/webhooks/65bce2b374b805f691d1a56d?key=${trelloAPIKey}&token=${trelloAccessToken}`,
       {
         method: "DELETE",
       }
