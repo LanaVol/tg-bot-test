@@ -5,10 +5,7 @@ import {
   bot,
   botMessageCreatedCard,
   botMessageUpdateCard,
-  handleTelegramUpdate,
-  setupWebhook,
 } from "./src/botServise.js";
-import { update } from "firebase/database";
 
 dotenv.config();
 

@@ -2,7 +2,6 @@ import TelegramBotAPI from "node-telegram-bot-api";
 import dotenv from "dotenv";
 import { addUserToDatabase } from "./firebaseService.js";
 import { createBoardListTrello } from "./trelloService.js";
-import axios from "axios";
 
 dotenv.config();
 
