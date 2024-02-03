@@ -5,6 +5,7 @@ import {
   bot,
   botMessageCreatedCard,
   botMessageUpdateCard,
+  startBot,
 } from "./src/botServise.js";
 
 dotenv.config();
@@ -17,10 +18,10 @@ app.use(bodyParser.json());
 app.post("/telegram-webhook", async (req, res) => {
   const { body } = req;
   bot.processUpdate(body);
+  startBot(body);
   // console.log("Received update: ", body);
-  // handleTelegramUpdate(update);
 
-  res.sendStatus(200);
+  res.status(200).send(body);
 });
 
 app.get("/telegram-webhook", async (req, res) => {
@@ -47,5 +48,4 @@ app.post("/trello-webhook", async (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
-  // await setupWebhook();
 });
