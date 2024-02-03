@@ -34,7 +34,7 @@ bot.on("message", async (msg) => {
   if (text === "/start" || text === "/start@ManagerTrelloBot") {
     await addUserToDatabase(chatId, msg.from.id, msg.from);
 
-    return bot.sendMessage(
+    await bot.sendMessage(
       chatId,
       `Hello, ${msg.from.first_name}! This is Trello_Bot 😎`
     );
@@ -42,7 +42,7 @@ bot.on("message", async (msg) => {
 
   if (text === "/newlist" || text === "/newlist@ManagerTrelloBot") {
     await createBoardListTrello("New List");
-    return bot.sendMessage(chatId, `✅New List was created`);
+    await bot.sendMessage(chatId, `✅New List was created`);
   }
 
   return "I don't understand you";
