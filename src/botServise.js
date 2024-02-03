@@ -27,36 +27,57 @@ const commards = () => {
 
 bot.setWebHook(webhookUrl);
 
-const startBot = () => {
-  bot.on("message", async (msg) => {
-    const chatId = msg.chat.id;
-    const text = msg.text;
+bot.on("message", async (msg) => {
+  const text = msg.text;
+  const chatId = msg.chat.id;
 
-    if (text === "/start" || text === "/start@ManagerTrelloBot") {
-      await addUserToDatabase(chatId, msg.from.id, msg.from);
+  if (text === "/start" || text === "/start@ManagerTrelloBot") {
+    await addUserToDatabase(chatId, msg.from.id, msg.from);
 
-      return bot.sendMessage(
-        chatId,
-        `Hello, ${msg.from.first_name}! This is Trello_Bot 😎`
-      );
-    }
+    return bot.sendMessage(
+      chatId,
+      `Hello, ${msg.from.first_name}! This is Trello_Bot 😎`
+    );
+  }
 
-    return "I don't understand you";
-  });
-};
+  if (text === "/newlist" || text === "/newlist@ManagerTrelloBot") {
+    await createBoardListTrello("New List");
+    return bot.sendMessage(chatId, `✅New List was created`);
+  }
 
-const createNewBoardListFromBot = () => {
-  bot.on("message", async (msg) => {
-    const chatId = msg.chat.id;
-    const text = msg.text;
+  return "I don't understand you";
+});
 
-    if (text === "/newlist" || text === "/newlist@ManagerTrelloBot") {
-      await createBoardListTrello("New List");
-      return bot.sendMessage(chatId, `✅New List was created`);
-    }
-    return "I don't understand you";
-  });
-};
+// const startBot = () => {
+//   bot.on("message", async (msg) => {
+//     const chatId = msg.chat.id;
+//     const text = msg.text;
+
+//     if (text === "/start" || text === "/start@ManagerTrelloBot") {
+//       await addUserToDatabase(chatId, msg.from.id, msg.from);
+
+//       return bot.sendMessage(
+//         chatId,
+//         `Hello, ${msg.from.first_name}! This is Trello_Bot 😎`
+//       );
+//     }
+
+//     return "I don't understand you";
+//   });
+// };
+
+// const createNewBoardListFromBot = () => {
+//   bot.on("message", async (msg) => {
+//     const chatId = msg.chat.id;
+//     const text = msg.text;
+
+//     if (text === "/newlist" || text === "/newlist@ManagerTrelloBot") {
+//       await createBoardListTrello("New List");
+//       return bot.sendMessage(chatId, `✅New List was created`);
+//     }
+//     return "I don't understand you";
+//   });
+// };
 
 const showBoardCardAction = (action) => {
   return `🔷Board: ${action.data.board.name}
@@ -84,5 +105,5 @@ export const botMessageCreatedCard = async (action) => {
 };
 
 commards();
-startBot();
-createNewBoardListFromBot();
+// startBot();
+// createNewBoardListFromBot();
