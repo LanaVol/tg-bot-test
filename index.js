@@ -20,7 +20,7 @@ app.post("/telegram-webhook", async (req, res) => {
   bot.processUpdate(body);
   await startBot();
 
-  res.sendStatus(200).json({ message: body });
+  res.sendStatus(200);
 });
 
 app.get("/telegram-webhook", async (req, res) => {
