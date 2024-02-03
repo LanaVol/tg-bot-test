@@ -32,12 +32,12 @@ export const addUserToDatabase = async (chatId, userId, user) => {
   const queryRef = query(dbRef, orderByChild("id"), equalTo(userId));
 
   const snapshot = await get(queryRef);
-  const isExist = await snapshot.exists();
+  const isExist = snapshot.exists();
 
   if (isExist) {
     await bot.sendMessage(chatId, "✅You are already registered!");
   } else {
-    const userRef = await child(dbRef, userId.toString());
+    const userRef = child(dbRef, userId.toString());
     await set(userRef, {
       id: userId,
       name: `${user.first_name} ${user.last_name}`,

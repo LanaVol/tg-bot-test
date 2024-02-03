@@ -19,9 +19,9 @@ app.use(bodyParser.json());
 
 app.post("/telegram-webhook", async (req, res) => {
   const { body } = req;
-  // bot.processUpdate(body);
+  bot.processUpdate(body);
   // console.log("Received update: ", body);
-  handleTelegramUpdate(update);
+  // handleTelegramUpdate(update);
 
   res.sendStatus(200);
 });
@@ -48,7 +48,7 @@ app.post("/trello-webhook", async (req, res) => {
   res.sendStatus(200);
 });
 
-app.listen(port, async () => {
+app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
-  await setupWebhook();
+  // await setupWebhook();
 });
