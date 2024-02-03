@@ -26,7 +26,7 @@ const commards = () => {
 };
 commards();
 
-bot.setWebHook(webhookUrl);
+// bot.setWebHook(webhookUrl);
 
 export const startBot = () => {
   bot.on("message", async (msg) => {
@@ -50,6 +50,9 @@ export const startBot = () => {
     // return "I don't understand you";
   });
 };
+
+startBot();
+bot.setWebHook(webhookUrl);
 
 // const startBot = () => {
 //   bot.on("message", async (msg) => {
