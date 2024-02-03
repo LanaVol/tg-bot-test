@@ -24,10 +24,11 @@ const commards = () => {
     },
   ]);
 };
+commards();
 
 bot.setWebHook(webhookUrl);
 
-export const startBot = async () => {
+export const startBot = () => {
   bot.on("message", async (msg) => {
     const text = msg.text;
     const chatId = msg.chat.id;
@@ -106,6 +107,5 @@ export const botMessageCreatedCard = async (action) => {
   );
 };
 
-commards();
 // startBot();
 // createNewBoardListFromBot();

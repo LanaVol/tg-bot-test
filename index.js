@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.post("/telegram-webhook", async (req, res) => {
   const { body } = req;
   bot.processUpdate(body);
-  await startBot();
+  startBot();
 
   res.sendStatus(200);
 });
