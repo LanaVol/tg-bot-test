@@ -27,7 +27,7 @@ const commards = () => {
 
 bot.setWebHook(webhookUrl);
 
-export const startBot = () => {
+export const startBot = async () => {
   bot.on("message", async (msg) => {
     const text = msg.text;
     const chatId = msg.chat.id;
