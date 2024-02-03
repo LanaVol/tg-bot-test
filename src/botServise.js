@@ -27,26 +27,28 @@ const commards = () => {
 
 bot.setWebHook(webhookUrl);
 
-bot.on("message", async (msg) => {
-  const text = msg.text;
-  const chatId = msg.chat.id;
+export const startBot = () => {
+  bot.on("message", async (msg) => {
+    const text = msg.text;
+    const chatId = msg.chat.id;
 
-  if (text === "/start" || text === "/start@ManagerTrelloBot") {
-    await addUserToDatabase(chatId, msg.from.id, msg.from);
+    if (text === "/start" || text === "/start@ManagerTrelloBot") {
+      await addUserToDatabase(chatId, msg.from.id, msg.from);
 
-    await bot.sendMessage(
-      chatId,
-      `Hello, ${msg.from.first_name}! This is Trello_Bot 😎`
-    );
-  }
+      await bot.sendMessage(
+        chatId,
+        `Hello, ${msg.from.first_name}! This is Trello_Bot 😎`
+      );
+    }
 
-  if (text === "/newlist" || text === "/newlist@ManagerTrelloBot") {
-    await createBoardListTrello("New List");
-    await bot.sendMessage(chatId, `✅New List was created`);
-  }
+    if (text === "/newlist" || text === "/newlist@ManagerTrelloBot") {
+      await createBoardListTrello("New List");
+      await bot.sendMessage(chatId, `✅New List was created`);
+    }
 
-  return "I don't understand you";
-});
+    // return "I don't understand you";
+  });
+};
 
 // const startBot = () => {
 //   bot.on("message", async (msg) => {

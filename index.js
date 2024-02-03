@@ -6,6 +6,7 @@ import {
   botMessageCreatedCard,
   botMessageUpdateCard,
 } from "./src/botServise.js";
+import { startBot } from "./src/botServise.js";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 app.post("/telegram-webhook", async (req, res) => {
   const { body } = req;
   bot.processUpdate(body);
+  startBot();
 
   res.sendStatus(200);
 });
