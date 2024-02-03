@@ -16,12 +16,12 @@ dotenv.config();
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API,
-  authDomain: "trello-bot-project.firebaseapp.com",
-  databaseURL: "https://trello-bot-project-default-rtdb.firebaseio.com",
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.FIREBASE_DATABASE_URL,
   projectId: "trello-bot-project",
   storageBucket: "trello-bot-project.appspot.com",
-  messagingSenderId: "294895283237",
-  appId: "1:294895283237:web:60ee4853f517890b7463cc",
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
 };
 
 const firebase = initializeApp(firebaseConfig);
@@ -35,7 +35,7 @@ export const addUserToDatabase = async (chatId, userId, user) => {
   const isExist = snapshot.exists();
 
   if (isExist) {
-    await bot.sendMessage(chatId, "✅You are already registered!");
+    await bot.sendMessage(chatId, "✅You are already registered in database!");
   } else {
     const userRef = child(dbRef, userId.toString());
     await set(userRef, {

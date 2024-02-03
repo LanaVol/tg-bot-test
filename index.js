@@ -18,8 +18,6 @@ app.use(bodyParser.json());
 app.post("/telegram-webhook", async (req, res) => {
   const { body } = req;
   bot.processUpdate(body);
-  startBot(body);
-  // console.log("Received update: ", body);
 
   res.status(200).send(body);
 });
@@ -29,7 +27,6 @@ app.get("/telegram-webhook", async (req, res) => {
 });
 
 app.head("/trello-webhook", async (req, res) => {
-  console.log("HEAD trello-webhook");
   res.status(200).json({ message: "trello" });
 });
 

@@ -7,15 +7,12 @@ const trelloAPIKey = process.env.TRELLO_API_KEY;
 const trelloAccessToken = process.env.TRELLO_ACCESS_TOKEN;
 const trelloBoardId = process.env.TRELLO_ID_BOARD;
 
-// const newTrelloWebhookUrl =
-//   "https://6eeb-176-37-48-101.ngrok-free.app/trello-webhook";
-
-const vercelWebhookURL = "https://tg-bot-test-neon.vercel.app/trello-webhook";
+const newTrelloWebhookUrl = process.env.TRELLO_WEBHOOK_URL;
 
 export const createWebhook = async () => {
   try {
     const response = await axios.post(
-      `https://api.trello.com/1/webhooks/?callbackURL=${vercelWebhookURL}&idModel=${trelloBoardId}&key=${trelloAPIKey}&token=${trelloAccessToken}`,
+      `https://api.trello.com/1/webhooks/?callbackURL=${newTrelloWebhookUrl}&idModel=${trelloBoardId}&key=${trelloAPIKey}&token=${trelloAccessToken}`,
       {
         method: "POST",
         headers: {
@@ -29,51 +26,10 @@ export const createWebhook = async () => {
   }
 };
 
-// const updateTrelloWebhook = async () => {
-//   try {
-//     const response = await axios.put(
-//       `https://api.trello.com/1/webhooks/65bbda626a66d844ca0c79f9`,
-//       {
-//         key: trelloAPIKey,
-//         token: trelloAccessToken,
-//         callbackURL: newTrelloWebhookUrl,
-//       },
-//       {
-//         method: "PUT",
-//         headers: {
-//           Accept: "application/json",
-//         },
-//       }
-//     );
-
-//     console.log("Webhook updated:", response.data);
-//   } catch (error) {
-//     console.error("Error updating webhook:", error.response.data);
-//   }
-// };
-// updateTrelloWebhook();
-
-const getAllWebhooksTrello = async () => {
-  try {
-    const response = await axios.get(
-      `https://api.trello.com/3/webhooks/65bcd881e6e666eba39303cb?key=${trelloAPIKey}&token=${trelloAccessToken}`,
-      {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-        },
-      }
-    );
-    console.log("TEXT: ", response.data);
-  } catch (error) {
-    console.log("error get hooks: ", error.message);
-  }
-};
-
 const deleteWebhooksTrello = async () => {
   try {
     const response = await axios.delete(
-      `https://api.trello.com/1/webhooks/65bce2b374b805f691d1a56d?key=${trelloAPIKey}&token=${trelloAccessToken}`,
+      `https://api.trello.com/1/webhooks/65bd82ef6d877e235f1b5fde?key=${trelloAPIKey}&token=${trelloAccessToken}`,
       {
         method: "DELETE",
       }
@@ -90,7 +46,7 @@ const getWebhooks = async () => {
       `https://api.trello.com/1/tokens/${trelloAccessToken}/webhooks?key=${trelloAPIKey}`
     );
 
-    console.log("Webhooks:", response.data);
+    // console.log("Webhooks:", response.data);
   } catch (error) {
     console.error(
       "Error getting webhooks:",
@@ -110,13 +66,12 @@ export const createBoardListTrello = async (name) => {
         },
       }
     );
-    console.log("TEXT: ", response.data);
+    // console.log("TEXT: ", response.data);
   } catch (error) {
     console.log("error create board list: ", error.message);
   }
 };
 
 // createWebhook();
-// getAllWebhooksTrello();
 // getWebhooks();
 // deleteWebhooksTrello();
