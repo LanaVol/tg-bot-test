@@ -3,12 +3,34 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+/**
+ * Trello API key obtained from Trello Developer Portal.
+ * @type {string}
+ */
 const trelloAPIKey = process.env.TRELLO_API_KEY;
+
+/**
+ * Trello access token obtained after user authentication.
+ * @type {string}
+ */
 const trelloAccessToken = process.env.TRELLO_ACCESS_TOKEN;
+
+/**
+ * Trello board ID where the webhook is attached.
+ * @type {string}
+ */
 const trelloBoardId = process.env.TRELLO_ID_BOARD;
 
+/**
+ * Webhook URL for Trello to send updates to.
+ * @type {string}
+ */
 const newTrelloWebhookUrl = process.env.TRELLO_WEBHOOK_URL;
 
+/**
+ * Create a webhook on Trello to receive updates.
+ * @returns {Promise<void>}
+ */
 export const createWebhook = async () => {
   try {
     const response = await axios.post(
@@ -20,12 +42,16 @@ export const createWebhook = async () => {
         },
       }
     );
-    console.log("!Webhook created: ", response.data);
+    // console.log("!Webhook created: ", response.data);
   } catch (error) {
     console.error("Error creating webhook:", error.message);
   }
 };
 
+/**
+ * Delete Trello webhooks.
+ * @returns {Promise<void>}
+ */
 const deleteWebhooksTrello = async () => {
   try {
     const response = await axios.delete(
@@ -40,6 +66,10 @@ const deleteWebhooksTrello = async () => {
   }
 };
 
+/**
+ * Get Trello webhooks associated with the access token.
+ * @returns {Promise<void>}
+ */
 const getWebhooks = async () => {
   try {
     const response = await axios.get(
@@ -55,6 +85,11 @@ const getWebhooks = async () => {
   }
 };
 
+/**
+ * Create a board list on Trello.
+ * @param {string} name - Name of the board list to be created.
+ * @returns {Promise<void>}
+ */
 export const createBoardListTrello = async (name) => {
   try {
     const response = await axios.post(
