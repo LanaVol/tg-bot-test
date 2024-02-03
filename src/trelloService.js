@@ -25,7 +25,7 @@ export const createWebhook = async () => {
     );
     console.log("!Webhook created: ", response.data);
   } catch (error) {
-    console.error("Error creating webhook:", error);
+    console.error("Error creating webhook:", error.message);
   }
 };
 
@@ -66,7 +66,7 @@ const getAllWebhooksTrello = async () => {
     );
     console.log("TEXT: ", response.data);
   } catch (error) {
-    console.log("error get hooks: ", error.response);
+    console.log("error get hooks: ", error.message);
   }
 };
 
@@ -80,7 +80,7 @@ const deleteWebhooksTrello = async () => {
     );
     console.log("TEXT: ", response.data);
   } catch (error) {
-    console.log("error delete hooks: ", error.response);
+    console.log("error delete hooks: ", error.message);
   }
 };
 
@@ -112,7 +112,7 @@ export const createBoardListTrello = async (name) => {
     );
     console.log("TEXT: ", response.data);
   } catch (error) {
-    console.log("error create board list: ", error.response);
+    console.log("error create board list: ", error.message);
   }
 };
 
