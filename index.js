@@ -5,7 +5,6 @@ import {
   bot,
   botMessageCreatedCard,
   botMessageUpdateCard,
-  startBot,
 } from "./src/botServise.js";
 
 dotenv.config();
