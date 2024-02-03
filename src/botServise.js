@@ -51,27 +51,28 @@ bot.setWebHook(webhookUrl);
 //   });
 // };
 export const startBot = async (update) => {
-  if (update.message && update.message.text) {
-    const text = update.message.text;
-    const chatId = update.message.chat.id;
+  console.log(update);
+  // if (update) {
+  //   const text = update.message.text;
+  //   const chatId = update.message.chat.id;
 
-    if (text === "/start" || text === "/start@ManagerTrelloBot") {
-      await addUserToDatabase(chatId, update.from.id, update.from);
+  //   if (text === "/start" || text === "/start@ManagerTrelloBot") {
+  //     await addUserToDatabase(chatId, update.from.id, update.from);
 
-      return bot.sendMessage(
-        chatId,
-        `Hello, ${update.from.first_name}! This is Trello_Bot 😎`
-      );
-    }
+  //     return bot.sendMessage(
+  //       chatId,
+  //       `Hello, ${update.from.first_name}! This is Trello_Bot 😎`
+  //     );
+  //   }
 
-    if (text === "/newlist" || text === "/newlist@ManagerTrelloBot") {
-      await createBoardListTrello("New List");
-      return bot.sendMessage(chatId, `✅New List was created`);
-    }
-  }
+  //   if (text === "/newlist" || text === "/newlist@ManagerTrelloBot") {
+  //     await createBoardListTrello("New List");
+  //     return bot.sendMessage(chatId, `✅New List was created`);
+  //   }
+  // }
 };
 
-startBot();
+// startBot();
 bot.setWebHook(webhookUrl);
 
 const showBoardCardAction = (action) => {
